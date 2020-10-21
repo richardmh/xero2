@@ -1,8 +1,14 @@
+## References
+
 [xero api docs](https://developer.xero.com/documentation/api/api-overview)
+
 [xero oauth2 flow](https://developer.xero.com/documentation/oauth2/auth-flow#connections)
+
 [user setup & config in xero](https://developer.xero.com/myapps)
 
 Super credit to Matt Gifford for his [oauth2 library](https://github.com/coldfumonkeh/oauth2) with my added xero.cfc provider. 
+
+## About
 
 Having used a modified version of the xero-supplied oAuth 1.1 cfml library in my private xero apps for years, xero are discontinuing this type of access in mar 2021.
 In the absence of any libraries I could find which implement oAuth2 with xero in cfml, this is my effort at making one.
@@ -31,7 +37,7 @@ passed on, but this is how it panned out in my apps and I can't be arsed to refa
 
 enjoy.
 	
-##Some example usages to get you started:
+## Some example usages to get you started:
 
 Verify or re-verify with xero.  
 In this case you would have set https://yourdomain.com/verify.cfm as the redirect_uri in your config in xero and in your local settings
