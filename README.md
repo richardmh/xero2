@@ -23,10 +23,13 @@ If you want to use this cfc, it WILL NOT work out of the box because it is desig
 and it references some functions not included here eg 
 - application.org.getPerm() and application.org.setPerm() which are my way of getting and setting static settings
 - application.log.cflog2() which is my way of logging things
+
 But you should be able to change these easily enough for your purposes.
 
 It also talks to xero in XML by default because my apps started talking to xero at a time when their api wasn't offering json across the board 
-so even though xml is often more tricky it is my default so I don't have to rewrite a raft of functions in my apps. 
+so even though xml is often more tricky, it is my default so I don't have to rewrite a raft of functions in my apps. For info, I'm using MSSQL as my 
+back end db.  For POST & PUT, rather than composing the appropriate xml in cfml I use the FOR XML PATH('something') query output to do it because it
+always seems to produce syntatically correct xml.
  
 To get json data, just change the sAccept default value to "application/json" and to post or put json, change the contentType default value to "application/json"
 - beware of xero's horrible date format in a get which looks like this in raw json : "\/Date(1601884339123)\/"  or "\/Date(1453224792477+0000)\/" 
