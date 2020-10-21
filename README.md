@@ -34,14 +34,14 @@
 
 Verify or re-verify with xero.  
 In this case you would have set https://yourdomain.com/verify.cfm as the redirect_uri in your config in xero and in your local settings
-	
+```	
 <a href="verify.cfm?a=startXero2Auth">Verify with Xero</a>
 <cfset application.xero2 = new cfc.xero2()>
+```
 
-=====
 
 Getting & setting data 
-
+```
 <cfset tenantName = "myTenantNameInXero">
 
 <cfset result = application.xero2.requestData(
@@ -49,38 +49,44 @@ Getting & setting data
 											sMethod = "get",
 											sResourceEndpoint = "Invoices/2670b9ac-eb86-4ef9-8c61-675ae535407f")>
 <cfdump var="#result#" label="get one invoice by guid">
+```
+same thing except it gets a pdf
 
-<!---same thing except it gets a pdf --->
+```
 <cfset result = application.xero2.requestData(
 											tenantName = tenantName,
 											sMethod = "get",
 											sAccept="application/pdf",
 											sResourceEndpoint = "Invoices/2670b9ac-eb86-4ef9-8c61-675ae535407f")>
 <cfdump var="#result#" label="get pdf of one invoice by guid">	
+```
 
-
+```
 <cfset result = application.xero2.requestData(
 											tenantName = tenantName,
 											sMethod = "get",
 											sResourceEndpoint = "Invoices/1387")>
 <cfdump var="#result#" label="get one Invoice by invoice number">									
-											
+```											
 
+```
 <cfset result = application.xero2.requestData(sMethod = "get",
 											tenantName = tenantName,
 											sResourceEndpoint = "Invoices",	
 											stParameters = {"where":'Contact.ContactID=Guid("4AA20F7B-7F53-409B-B1A7-40B1DD934A9C")'})>						
 <cfdump var="#result#" label="get invoices attached to a contact">
-	
-	
+```
+
+```
 <cfset result = application.xero2.requestData(
 											tenantName = tenantName,
 											sMethod = "get",
 											sResourceEndpoint = "Invoices",	
 											stParameters = {"where":'Date >= DateTime(2019, 09, 01) && Date < DateTime(2019, 11, 01)'})>
 <cfdump var="#result#" label="get invoices between 2 dates">
+```
 
-
+```
 <cfset result = application.xero2.requestData(
 											tenantName = tenantName,
 											sMethod = "get",
@@ -88,3 +94,4 @@ Getting & setting data
 											stParameters = {"where":'Status="ACTIVE" and CanApplyToRevenue=true',"order":"TaxType"}
 											)>
 <cfdump var="#result#" label="get a subset of taxrates">
+```
