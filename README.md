@@ -47,7 +47,7 @@ In this case you would have set https://yourdomain.com/verify.cfm as the redirec
 ```
 
 
-Getting & setting data 
+## Getting data 
 ```
 <cfset tenantName = "myTenantNameInXero">
 
@@ -77,11 +77,21 @@ same thing except it gets a pdf
 ```											
 
 ```
-<cfset result = application.xero2.requestData(sMethod = "get",
+<cfset result = application.xero2.requestData(
+		sMethod = "get",
 		tenantName = tenantName,
 		sResourceEndpoint = "Invoices",	
 		stParameters = {"where":'Contact.ContactID=Guid("4AA20F7B-7F53-409B-B1A7-40B1DD934A9C")'})>						
 <cfdump var="#result#" label="get invoices attached to a contact">
+```
+
+```
+<cfset result = application.xero2.requestData(
+		sMethod = "get",
+		tenantName = tenantName,
+		sResourceEndpoint = "Invoices",	
+		stParameters = {"where":'Contact.ContactID=Guid("4AA20F7B-7F53-409B-B1A7-40B1DD934A9C") and Type = "ACCREC" and Status != "VOIDED" and Status != "DELETED" and Status != "DRAFT"''})>						
+<cfdump var="#result#" label="get a subset of invoices attached to a contact">
 ```
 
 ```
@@ -102,3 +112,15 @@ same thing except it gets a pdf
 		)>
 <cfdump var="#result#" label="get a subset of taxrates">
 ```
+
+Get invoices of a contact - ACCREC is a sales invoice, ACCPAY is a bill (we don't need these here)
+
+```
+	<cfset result = application.xero2.requestData(
+		tenantName=arguments.tenantName,
+		sMethod = "get",
+		sResourceEndpoint = "Invoices",	
+		stParameters = {"where":'Contact.ContactID=Guid("#xeroGuid#") and Type = "ACCREC" and Status != "VOIDED" and Status != "DELETED" and Status != "DRAFT"'})>
+<cfdump var="#result#" label="get a subset of taxrates">
+```		
+
